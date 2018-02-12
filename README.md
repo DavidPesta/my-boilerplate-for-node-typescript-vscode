@@ -4,7 +4,7 @@ Environment Setup
 
 Project Setup
 \# npm install
-\# npm run dev
+\# sudo npm run dev
 
 Helpful links:
 - https://stackoverflow.com/questions/20011568/difference-between-express-and-socketio-for-nodejs
@@ -20,3 +20,6 @@ Helpful links:
 Later:
 - https://stackoverflow.com/questions/30978722/simplest-possible-node-js-nunjucks-example
 - https://mozilla.github.io/nunjucks/
+
+Hosting:
+- https://www.openode.io/
