@@ -4,7 +4,8 @@ Environment Setup
 
 Project Setup
 \# npm install
-\# sudo npm run dev
+\# sudo npm run dev (If nginx is running, issue a sudo service nginx stop)
+- Navigate your browser to http://localhost
 
 Helpful links:
 - https://stackoverflow.com/questions/20011568/difference-between-express-and-socketio-for-nodejs

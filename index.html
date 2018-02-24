@@ -1,16 +1,66 @@
 <!doctype html>  
 <html lang="en">  
 	<head>
-
-	</head>
-	<body>
-		<h1>Hello World!</h1>
-		<div id="future"></div>
-		<form id="form" id="chat_form">
-			<input id="chat_input" type="text">
-			<input type="submit" value="Send">
-		</form>
 		<script src="/jquery/dist/jquery.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
+		<script src="/dashboard-controls.js"></script>
+	</head>
+	<body>
+		<h1>Development Dashboard</h1>
+		
+		<table>
+			<tr>
+				<td style="vertical-align: top;">
+					<div id="connectionStatus" style="color: #FF0000;">Disconnected</div>
+					<input id="connectionButton" type="button" value="Connect" />
+				</td>
+				<td style="vertical-align: top; padding-left: 20px;">
+					<div><b>Robot</b></div>
+					<div><input id="type" type="textbox" /> Type</div>
+					<div>
+						Material<br />
+						<input type="radio" name="material" value="iron" /> Iron<br />
+						<input type="radio" name="material" value="plastic" /> Plastic
+					</div>
+					<div>
+						Planet<br />
+						<input type="radio" name="planet" value="earth" /> Earth<br />
+						<input type="radio" name="planet" value="mars" /> Mars
+					</div>
+					<div><input id="intelligence" type="textbox" /> Intelligence</div>
+					<div><input id="happy" type="checkbox" value="1"> Happy</div>
+					<div><input id="createRobot" type="button" value="Create Robot" /></div>
+				</td>
+			</tr>
+		</table>
+		
+		<script>
+			socket = io("http://localhost", {
+				autoConnect: false
+			});
+			
+			// Customize this to behave appropriately for the application
+			function verifyConnectionStatus() {
+				if (true == socket.connected) {
+					$("#connectionStatus").html("Connected").css("color", "#00AA00");
+					$("#connectionButton").val("Disconnect");
+				}
+				else {
+					$("#connectionStatus").html("Disconnected").css("color", "#FF0000");
+					$("#connectionButton").val("Connect");
+				}
+			}
+			
+			function callRemoteMethod(method, data) {
+				socket.emit("call", {
+					"method": method,
+					"data": data
+				});
+			}
+			
+			// Function: Listen to incoming socket messages
+			//   If it's a message that is calling a function, then call that function and pass in variables
+			//   The response message functions are together inside dashboard-controls.js along with the ui bindings that send messages to the socket that results in those responses
+		</script>
 	</body>
 </html>
